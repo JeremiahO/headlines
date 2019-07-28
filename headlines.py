@@ -67,7 +67,7 @@ def home():
                                              rate=rate, currencies=sorted(currencies)))
     expires = datetime.datetime.now() + datetime.timedelta(days=365)
     response.set_cookie("publication", publication, expires=expires)
-    response.set_cookie("city", city, expires=expires)
+    #response.set_cookie("city", city, expires=expires)
     response.set_cookie("currency_from", currency_from, expires=expires)
     response.set_cookie("currency_to", currency_to, expires=expires)
     return response
@@ -97,7 +97,7 @@ def get_news(publication):  # Simple function that returns a message
 def get_weather(query):
     # print(query)
     query = urllib.parse.quote(query)
-    print(query)
+    # print(query)
     url = WEATHER_URL.format(query)
     # print("url: " + query)
     data = urllib.request.urlopen(url).read()
@@ -134,5 +134,4 @@ def favicon():
 
 if __name__ == '__main__':  # used to stop scripts from being unintentionally run
     # It is used to kick off flasks app dev server on a local machine
-    app.run()
-    # port=8000, debug=True
+    app.run(port=8000, debug=True)
