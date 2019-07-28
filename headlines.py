@@ -93,8 +93,6 @@ def get_news(publication):  # Simple function that returns a message
     # first_article = feed['entries'][0]
     return feed['entries']
 
-# This deals with the issues of a requested favicon.ico its code provided in the flask documentation
-
 
 def get_weather(query):
     # print(query)
@@ -126,6 +124,8 @@ def get_rate(frm, to):
 
     return (to_rate/frm_rate, parsed.keys())
 
+# This deals with the issues of a requested favicon.ico its code provided in the flask documentation
+
 
 @app.route('/favicon.ico')
 def favicon():
@@ -134,4 +134,4 @@ def favicon():
 
 if __name__ == '__main__':  # used to stop scripts from being unintentionally run
     # It is used to kick off flasks app dev server on a local machine
-    app.run(port=5000, debug=True)
+    app.run(port=8000, debug=True)
