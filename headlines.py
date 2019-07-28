@@ -97,7 +97,7 @@ def get_news(publication):  # Simple function that returns a message
 def get_weather(query):
     # print(query)
     query = urllib.parse.quote(query)
-    # print(query)
+    print(query)
     url = WEATHER_URL.format(query)
     # print("url: " + query)
     data = urllib.request.urlopen(url).read()
@@ -134,4 +134,5 @@ def favicon():
 
 if __name__ == '__main__':  # used to stop scripts from being unintentionally run
     # It is used to kick off flasks app dev server on a local machine
-    app.run(port=8000, debug=True)
+    app.run()
+    # port=8000, debug=True
