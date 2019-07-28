@@ -100,7 +100,7 @@ def get_weather(query):
     # query = urllib.parse.quote(query)
     # print("query with urllib: " + query)
     url = WEATHER_URL.format(query)
-    print("url: " + url)
+    # print("url: " + url)
     data = urllib.request.urlopen(url).read()
     # print(data)
     parsed = json.loads(data)
@@ -121,7 +121,9 @@ def get_rate(frm, to):
 
     parsed = json.loads(all_currency).get('rates')
     frm_rate = parsed.get(frm)
+    print(frm_rate)
     to_rate = parsed.get(to)
+    print(to_rate)
     if to_rate and frm_rate == None:
         rate = 0
     else:
