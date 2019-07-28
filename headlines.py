@@ -66,10 +66,10 @@ def home():
                                              currency_from=currency_from, currency_to=currency_to,
                                              rate=rate, currencies=sorted(currencies)))
     expires = datetime.datetime.now() + datetime.timedelta(days=365)
-    response.set_cookie("publication", publication, expires=expires)
-    response.set_cookie("city", city, expires=expires)
-    response.set_cookie("currency_from", currency_from, expires=expires)
-    response.set_cookie("currency_to", currency_to, expires=expires)
+    #response.set_cookie("publication", publication, expires=expires)
+    #response.set_cookie("city", city, expires=expires)
+    #response.set_cookie("currency_from", currency_from, expires=expires)
+    #response.set_cookie("currency_to", currency_to, expires=expires)
 
     return response
 
@@ -120,11 +120,15 @@ def get_rate(frm, to):
     all_currency = urllib.request.urlopen(CURRENCY_URL).read()
     # print(all_currency)
     parsed = json.loads(all_currency).get('rates')
-    print(parsed)
+    # print(parsed)
+    frm = DEFAULTS['currency_from']
     frm_rate = parsed.get(frm)
     print(frm_rate)
+
+    to = DEFAULTS['currency_to']
     to_rate = parsed.get(to)
     print(to_rate)
+
     if to_rate or frm_rate == None:
         rate = 0
     else:
