@@ -60,16 +60,18 @@ def home():
     # get customized currency data based on users input or default
     currency_from = get_value_with_fallback("currency_from")
     currency_to = get_value_with_fallback("currency_to")
-    rate, currencies = get_rate(currency_from, currency_to)
+    # rate, currencies = get_rate(currency_from, currency_to)
     # Save cookies and return template
-    response = make_response(render_template("home.html", articles=articles, weather=weather,
+    response = make_response(render_template("home.html")
+
+    ''', articles=articles, weather=weather,
                                              currency_from=currency_from, currency_to=currency_to,
                                              rate=rate, currencies=sorted(currencies)))
     expires = datetime.datetime.now() + datetime.timedelta(days=365)
     response.set_cookie("publication", publication, expires=expires)
     response.set_cookie("city", city, expires=expires)
     response.set_cookie("currency_from", currency_from, expires=expires)
-    response.set_cookie("currency_to", currency_to, expires=expires)
+    response.set_cookie("currency_to", currency_to, expires=expires)'''
     return response
 
 
@@ -81,13 +83,13 @@ def get_value_with_fallback(key):
 
 
 def get_news(publication):  # Simple function that returns a message
-    query = request.args.get("publication")
+    query=request.args.get("publication")
     if not query or query.lower() not in RSS_FEED:
-        publication = DEFAULTS["publication"]
+        publication=DEFAULTS["publication"]
     else:
-        publication = query.lower()
+        publication=query.lower()
     # Takes the url parses the feed and creates a python dictionary
-    feed = feedparser.parse(RSS_FEED[publication])
+    feed=feedparser.parse(RSS_FEED[publication])
     # entries refers to all the feed enties in the dictionary and we took the first one
     # used to access only the first article
     # first_article = feed['entries'][0]
@@ -98,16 +100,16 @@ def get_weather(query):
     # print(query)
     # query = urllib.parse.quote(query)
     # print("query with urllib: " + query)
-    url = WEATHER_URL.format(query)
+    url=WEATHER_URL.format(query)
     print("url: " + url)
-    data = urllib.request.urlopen(url).read()
+    data=urllib.request.urlopen(url).read()
     # print(data)
-    parsed = json.loads(data)
+    parsed=json.loads(data)
     # print(parsed)
-    weather = None
+    weather=None
     if parsed.get('weather'):
         # print('true')
-        weather = {'description': parsed['weather'][0]['description'],
+        weather={'description': parsed['weather'][0]['description'],
                    'temperature': parsed['main']['temp'],
                    'city': parsed['name']
                    }
@@ -116,11 +118,11 @@ def get_weather(query):
 
 
 def get_rate(frm, to):
-    all_currency = urllib.request.urlopen(CURRENCY_URL).read()
+    all_currency=urllib.request.urlopen(CURRENCY_URL).read()
 
-    parsed = json.loads(all_currency).get('rates')
-    frm_rate = parsed.get(frm)
-    to_rate = parsed.get(to)
+    parsed=json.loads(all_currency).get('rates')
+    frm_rate=parsed.get(frm)
+    to_rate=parsed.get(to)
 
     return (to_rate/frm_rate, parsed.keys())
 
