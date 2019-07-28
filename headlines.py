@@ -119,8 +119,8 @@ def get_rate(frm, to):
     all_currency = urllib.request.urlopen(CURRENCY_URL).read()
 
     parsed = json.loads(all_currency).get('rates')
-    frm_rate = parsed.get(frm.upper())
-    to_rate = parsed.get(to.upper())
+    frm_rate = parsed.get(frm)
+    to_rate = parsed.get(to)
 
     return (to_rate/frm_rate, parsed.keys())
 
