@@ -52,10 +52,10 @@ CURRENCY_URL = "https://openexchangerates.org/api/latest.json?app_id=57d8e99a00e
 #    return get_news('cnn')
 def home():
     # get customized headlines based on users input or default
-    publication = get_value_with_fallback('publication')
+    publication = get_value_with_fallback("publication")
     articles = get_news(publication)
     # get customized weather based on users input or default
-    city = get_value_with_fallback('city')
+    city = get_value_with_fallback("city")
     weather = get_weather(city)
     # get customized currency data based on users input or default
     currency_from = get_value_with_fallback("currency_from")
@@ -67,7 +67,7 @@ def home():
                                              rate=rate, currencies=sorted(currencies)))
     expires = datetime.datetime.now() + datetime.timedelta(days=365)
     response.set_cookie("publication", publication, expires=expires)
-    #response.set_cookie("city", city, expires=expires)
+    response.set_cookie("city", city, expires=expires)
     response.set_cookie("currency_from", currency_from, expires=expires)
     response.set_cookie("currency_to", currency_to, expires=expires)
     return response
@@ -134,4 +134,5 @@ def favicon():
 
 if __name__ == '__main__':  # used to stop scripts from being unintentionally run
     # It is used to kick off flasks app dev server on a local machine
-    app.run(port=8000, debug=True)
+    app.run()
+    # port=8000, debug=True
