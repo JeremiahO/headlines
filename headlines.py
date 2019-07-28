@@ -122,8 +122,11 @@ def get_rate(frm, to):
     parsed = json.loads(all_currency).get('rates')
     frm_rate = parsed.get(frm)
     to_rate = parsed.get(to)
-
-    return (to_rate/frm_rate, parsed.keys())
+    if to_rate and frm_rate == None:
+        rate = 0
+    else:
+        rate = to_rate/frm_rate
+    return (rate, parsed.keys())
 
 # This deals with the issues of a requested favicon.ico its code provided in the flask documentation
 
