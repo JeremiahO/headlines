@@ -128,7 +128,10 @@ def get_rate(frm, to):
     to_rate = parsed.get(to)
     print(to_rate)
 
-    rate = to_rate/frm_rate
+    if frm or to == None:
+        rate = 0
+    else:
+        rate = to_rate/frm_rate
 
     return (rate, parsed.keys())
 
