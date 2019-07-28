@@ -12,15 +12,6 @@ from flask import send_from_directory
 from flask import request
 from flask import make_response
 
-''' PAGE 75 - Adding Padding to our CSS '''
-
-''' @TO DO:
-- Upload website to free Heroku VPS
-- Pair this with working on Personal website
-- Look into VPS with Raspberry Pi for testing
-
-'''
-
 app = Flask(__name__)  # Cresting and instance of the flask object
 
 RSS_FEED = {'bbc': 'http://feeds.bbci.co.uk/news/rss.xml',
