@@ -118,13 +118,14 @@ def get_weather(query):
 
 def get_rate(frm, to):
     all_currency = urllib.request.urlopen(CURRENCY_URL).read()
-
+    # print(all_currency)
     parsed = json.loads(all_currency).get('rates')
+    print(parsed)
     frm_rate = parsed.get(frm)
     print(frm_rate)
     to_rate = parsed.get(to)
     print(to_rate)
-    if to_rate and frm_rate == None:
+    if to_rate or frm_rate == None:
         rate = 0
     else:
         rate = to_rate/frm_rate
