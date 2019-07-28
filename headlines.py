@@ -96,10 +96,10 @@ def get_news(publication):  # Simple function that returns a message
 
 def get_weather(query):
     # print(query)
-    query = urllib.parse.quote(query)
-    # print(query)
+    # query = urllib.parse.quote(query)
+    # print("query with urllib: " + query)
     url = WEATHER_URL.format(query)
-    # print("url: " + query)
+    print("url: " + url)
     data = urllib.request.urlopen(url).read()
     # print(data)
     parsed = json.loads(data)
