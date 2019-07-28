@@ -83,7 +83,7 @@ def get_value_with_fallback(key):
 def get_news(publication):  # Simple function that returns a message
     query = request.args.get("publication")
     if not query or query.lower() not in RSS_FEED:
-        publicaation = DEFAULTS["publication"]
+        publication = DEFAULTS["publication"]
     else:
         publication = query.lower()
     # Takes the url parses the feed and creates a python dictionary
